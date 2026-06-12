@@ -19,6 +19,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SitemapXmlRouteImport } from './routes/sitemap.xml'
 import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
+import { Route as JournalSlugRouteImport } from './routes/journal.$slug'
 
 const TestimonialsRoute = TestimonialsRouteImport.update({
   id: '/testimonials',
@@ -70,16 +71,22 @@ const ProjectsSlugRoute = ProjectsSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => ProjectsRoute,
 } as any)
+const JournalSlugRoute = JournalSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => JournalRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/journal': typeof JournalRoute
+  '/journal': typeof JournalRouteWithChildren
   '/process': typeof ProcessRoute
   '/projects': typeof ProjectsRouteWithChildren
   '/services': typeof ServicesRoute
   '/testimonials': typeof TestimonialsRoute
+  '/journal/$slug': typeof JournalSlugRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/sitemap/xml': typeof SitemapXmlRoute
 }
@@ -87,11 +94,12 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/journal': typeof JournalRoute
+  '/journal': typeof JournalRouteWithChildren
   '/process': typeof ProcessRoute
   '/projects': typeof ProjectsRouteWithChildren
   '/services': typeof ServicesRoute
   '/testimonials': typeof TestimonialsRoute
+  '/journal/$slug': typeof JournalSlugRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/sitemap/xml': typeof SitemapXmlRoute
 }
@@ -100,11 +108,12 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/journal': typeof JournalRoute
+  '/journal': typeof JournalRouteWithChildren
   '/process': typeof ProcessRoute
   '/projects': typeof ProjectsRouteWithChildren
   '/services': typeof ServicesRoute
   '/testimonials': typeof TestimonialsRoute
+  '/journal/$slug': typeof JournalSlugRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/sitemap/xml': typeof SitemapXmlRoute
 }
@@ -119,6 +128,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/services'
     | '/testimonials'
+    | '/journal/$slug'
     | '/projects/$slug'
     | '/sitemap/xml'
   fileRoutesByTo: FileRoutesByTo
@@ -131,6 +141,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/services'
     | '/testimonials'
+    | '/journal/$slug'
     | '/projects/$slug'
     | '/sitemap/xml'
   id:
@@ -143,6 +154,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/services'
     | '/testimonials'
+    | '/journal/$slug'
     | '/projects/$slug'
     | '/sitemap/xml'
   fileRoutesById: FileRoutesById
@@ -151,7 +163,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
-  JournalRoute: typeof JournalRoute
+  JournalRoute: typeof JournalRouteWithChildren
   ProcessRoute: typeof ProcessRoute
   ProjectsRoute: typeof ProjectsRouteWithChildren
   ServicesRoute: typeof ServicesRoute
@@ -231,8 +243,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsSlugRouteImport
       parentRoute: typeof ProjectsRoute
     }
+    '/journal/$slug': {
+      id: '/journal/$slug'
+      path: '/$slug'
+      fullPath: '/journal/$slug'
+      preLoaderRoute: typeof JournalSlugRouteImport
+      parentRoute: typeof JournalRoute
+    }
   }
 }
+
+interface JournalRouteChildren {
+  JournalSlugRoute: typeof JournalSlugRoute
+}
+
+const JournalRouteChildren: JournalRouteChildren = {
+  JournalSlugRoute: JournalSlugRoute,
+}
+
+const JournalRouteWithChildren =
+  JournalRoute._addFileChildren(JournalRouteChildren)
 
 interface ProjectsRouteChildren {
   ProjectsSlugRoute: typeof ProjectsSlugRoute
@@ -250,7 +280,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
-  JournalRoute: JournalRoute,
+  JournalRoute: JournalRouteWithChildren,
   ProcessRoute: ProcessRoute,
   ProjectsRoute: ProjectsRouteWithChildren,
   ServicesRoute: ServicesRoute,
