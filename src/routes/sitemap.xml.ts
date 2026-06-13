@@ -4,7 +4,8 @@ export const Route = createFileRoute("/sitemap/xml")({
   server: {
     handlers: {
       GET: async () => {
-        const BASE_URL = "https://id-preview--775e067c-45f1-42bf-a3dd-a1382a28b889.lovable.app";
+        // TODO: update to the production domain once it is finalized.
+        const BASE_URL = "https://www.vivanta.studio";
 
         const entries = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
