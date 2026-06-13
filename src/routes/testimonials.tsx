@@ -65,20 +65,22 @@ const testimonials = [
 
 function TestimonialsPage() {
   return (
-    <main className="bg-[#F7F5F2] text-[#1C1E1A] font-sans pt-24">
-      {/* Page Header */}
-      <section className="px-6 md:px-12 pt-12 pb-16 md:pt-20 md:pb-24 max-w-7xl mx-auto">
-        <span className="font-mono text-[10px] uppercase tracking-widest text-[#9D8A6C] mb-6 block">
-          Testimonials
-        </span>
-        <h1 className="font-serif italic text-5xl md:text-7xl lg:text-8xl leading-[0.85] tracking-tighter text-[#1C1E1A]">
-          Words from <br />
-          Those We Serve.
-        </h1>
+    <main className="bg-[#F7F5F2] text-[#1C1E1A] font-sans">
+      <section className="relative h-[70vh] overflow-hidden flex items-end">
+        <img src="/images/project-hospitality.jpg" alt="Olive Hotel lobby" className="absolute inset-0 w-full h-full object-cover animate-slow-zoom" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1C1E1A]/70 via-transparent to-[#1C1E1A]/30" />
+        <div className="relative z-10 px-6 md:px-12 pb-16 max-w-7xl mx-auto w-full">
+          <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-[#F7F5F2]/70 mb-6 block">
+            Voices
+          </span>
+          <h1 className="font-serif italic text-6xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tighter text-[#F7F5F2]">
+            Words from <br /> Those We Serve.
+          </h1>
+        </div>
       </section>
 
       {/* Featured Quote */}
-      <section className="px-6 md:px-12 pb-16 max-w-7xl mx-auto">
+      <section className="px-6 md:px-12 pt-24 pb-16 max-w-7xl mx-auto">
         <div className="bg-[#1C1E1A] text-[#F7F5F2] p-12 md:p-20">
           <span className="text-[#9D8A6C] text-5xl font-serif block mb-8">&ldquo;</span>
           <blockquote className="font-serif text-3xl md:text-5xl leading-snug mb-12 max-w-4xl">

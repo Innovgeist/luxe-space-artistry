@@ -72,29 +72,72 @@ const projects = [
   },
 ];
 
+const extraProjects = [
+  {
+    slug: "riverfront-pavilion",
+    title: "Skyline Penthouse",
+    category: "Residential",
+    location: "Ahmedabad",
+    year: "2025",
+    image: "/images/project-penthouse.jpg",
+    aspect: "16/10",
+  },
+  {
+    slug: "the-olive-hotel",
+    title: "Mansingh Heritage Lobby",
+    category: "Hospitality",
+    location: "Jaipur",
+    year: "2024",
+    image: "/images/project-hospitality.jpg",
+    aspect: "10/12",
+  },
+  {
+    slug: "aurum-collective",
+    title: "Maison Aether Showroom",
+    category: "Commercial",
+    location: "Delhi",
+    year: "2025",
+    image: "/images/project-showroom.jpg",
+    aspect: "16/10",
+  },
+  {
+    slug: "sand-house",
+    title: "Sabarmati Villa",
+    category: "Residential",
+    location: "Ahmedabad",
+    year: "2024",
+    image: "/images/project-exterior.jpg",
+    aspect: "3/4",
+  },
+];
+const allProjects = [...projects, ...extraProjects];
+
 function ProjectsPage() {
   const [activeFilter, setActiveFilter] = useState("All");
 
   const filtered =
     activeFilter === "All"
-      ? projects
-      : projects.filter((p) => p.category === activeFilter);
+      ? allProjects
+      : allProjects.filter((p) => p.category === activeFilter);
 
   return (
-    <main className="bg-[#F7F5F2] text-[#1C1E1A] font-sans pt-24">
-      {/* Page Header */}
-      <section className="px-6 md:px-12 pt-12 pb-12 md:pt-20 md:pb-16 max-w-7xl mx-auto">
-        <span className="font-mono text-[10px] uppercase tracking-widest text-[#9D8A6C] mb-6 block">
-          Portfolio
-        </span>
-        <h1 className="font-serif italic text-5xl md:text-7xl lg:text-8xl leading-[0.85] tracking-tighter text-[#1C1E1A]">
-          Selected <br />
-          Commissions.
-        </h1>
+    <main className="bg-[#F7F5F2] text-[#1C1E1A] font-sans">
+      {/* Editorial hero */}
+      <section className="relative h-[80vh] overflow-hidden flex items-end">
+        <img src="/images/project-exterior.jpg" alt="Luxury villa exterior" className="absolute inset-0 w-full h-full object-cover animate-slow-zoom" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1C1E1A]/70 via-transparent to-[#1C1E1A]/30" />
+        <div className="relative z-10 px-6 md:px-12 pb-16 max-w-7xl mx-auto w-full">
+          <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-[#F7F5F2]/70 mb-6 block">
+            Portfolio — 120+ Works
+          </span>
+          <h1 className="font-serif italic text-6xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tighter text-[#F7F5F2]">
+            Selected <br /> Commissions.
+          </h1>
+        </div>
       </section>
 
       {/* Filter Bar */}
-      <section className="px-6 md:px-12 pb-8 max-w-7xl mx-auto">
+      <section className="px-6 md:px-12 pt-16 pb-8 max-w-7xl mx-auto">
         <div className="flex flex-wrap gap-6 border-b border-[#1C1E1A]/10 pb-6">
           {categories.map((cat) => (
             <button
@@ -117,7 +160,7 @@ function ProjectsPage() {
         <div className="grid md:grid-cols-2 gap-x-12 gap-y-16 md:gap-y-24">
           {filtered.map((project, i) => (
             <Link
-              key={project.slug}
+              key={`${project.slug}-${i}`}
               to="/projects/$slug"
               params={{ slug: project.slug }}
               className={`group cursor-pointer block ${i % 2 === 1 ? "md:mt-20" : ""}`}

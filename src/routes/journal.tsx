@@ -73,20 +73,22 @@ const categories = ["All", "Materials", "Residential", "Commercial", "Architectu
 
 function JournalPage() {
   return (
-    <main className="bg-[#F7F5F2] text-[#1C1E1A] font-sans pt-24">
-      {/* Page Header */}
-      <section className="px-6 md:px-12 pt-12 pb-12 md:pt-20 md:pb-16 max-w-7xl mx-auto">
-        <span className="font-mono text-[10px] uppercase tracking-widest text-[#9D8A6C] mb-6 block">
-          Journal
-        </span>
-        <h1 className="font-serif italic text-5xl md:text-7xl lg:text-8xl leading-[0.85] tracking-tighter text-[#1C1E1A]">
-          Thoughts on <br />
-          Space & Light.
-        </h1>
+    <main className="bg-[#F7F5F2] text-[#1C1E1A] font-sans">
+      <section className="relative h-[70vh] overflow-hidden flex items-end">
+        <img src="/images/texture-detail.jpg" alt="Material study" className="absolute inset-0 w-full h-full object-cover animate-slow-zoom" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1C1E1A]/70 via-transparent to-[#1C1E1A]/30" />
+        <div className="relative z-10 px-6 md:px-12 pb-16 max-w-7xl mx-auto w-full">
+          <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-[#F7F5F2]/70 mb-6 block">
+            Journal — The Editorial
+          </span>
+          <h1 className="font-serif italic text-6xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tighter text-[#F7F5F2]">
+            Thoughts on <br /> Space &amp; Light.
+          </h1>
+        </div>
       </section>
 
       {/* Featured Article */}
-      <section className="px-6 md:px-12 pb-16 max-w-7xl mx-auto">
+      <section className="px-6 md:px-12 py-24 max-w-7xl mx-auto">
         <Link to="/journal/the-art-of-limewash" className="group block">
           <div className="grid md:grid-cols-2 gap-0">
             <div className="relative overflow-hidden aspect-[4/3] md:aspect-auto">
