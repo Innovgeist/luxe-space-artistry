@@ -30,20 +30,22 @@ function ContactPage() {
   };
 
   return (
-    <main className="bg-[#F7F5F2] text-[#1C1E1A] font-sans pt-24">
-      {/* Page Header */}
-      <section className="px-6 md:px-12 pt-12 pb-12 md:pt-20 md:pb-16 max-w-7xl mx-auto">
-        <span className="font-mono text-[10px] uppercase tracking-widest text-[#9D8A6C] mb-6 block">
-          Inquiry
-        </span>
-        <h1 className="font-serif italic text-5xl md:text-7xl lg:text-8xl leading-[0.85] tracking-tighter text-[#1C1E1A]">
-          Begin the <br />
-          Dialogue.
-        </h1>
+    <main className="bg-[#F7F5F2] text-[#1C1E1A] font-sans">
+      <section className="relative h-[70vh] overflow-hidden flex items-end">
+        <img src="/images/showreel-3.jpg" alt="Vivanta atelier" className="absolute inset-0 w-full h-full object-cover animate-slow-zoom" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1C1E1A]/70 via-transparent to-[#1C1E1A]/30" />
+        <div className="relative z-10 px-6 md:px-12 pb-16 max-w-7xl mx-auto w-full">
+          <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-[#F7F5F2]/70 mb-6 block">
+            Inquiry — By Appointment
+          </span>
+          <h1 className="font-serif italic text-6xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tighter text-[#F7F5F2]">
+            Begin the <br /> Dialogue.
+          </h1>
+        </div>
       </section>
 
       {/* Contact Grid */}
-      <section className="px-6 md:px-12 pb-24 md:pb-32 max-w-7xl mx-auto grid md:grid-cols-12 gap-16">
+      <section className="px-6 md:px-12 py-24 md:py-32 max-w-7xl mx-auto grid md:grid-cols-12 gap-16">
         {/* Contact Info */}
         <div className="md:col-span-4">
           <div className="sticky top-32 space-y-12">
@@ -219,14 +221,26 @@ function ContactPage() {
 
       {/* Map Placeholder */}
       <section className="px-6 md:px-12 pb-24 md:pb-32 max-w-7xl mx-auto">
-        <div className="w-full h-[400px] bg-[#EDEAE5] flex items-center justify-center">
-          <div className="text-center">
-            <span className="font-mono text-[10px] uppercase tracking-widest text-[#8A8580] block mb-2">
-              Ahmedabad, Gujarat
-            </span>
-            <span className="font-serif text-2xl text-[#1C1E1A]">
-              23.0225° N, 72.5714° E
-            </span>
+        <div className="relative w-full h-[500px] overflow-hidden">
+          <img src="/images/project-exterior.jpg" alt="Studio location, Ahmedabad" loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-[#1C1E1A]/40" />
+          <div className="relative z-10 h-full flex items-center justify-center text-center">
+            <div>
+              <span className="font-mono text-[10px] uppercase tracking-widest text-[#F7F5F2]/70 block mb-3">
+                The Atelier — Ahmedabad
+              </span>
+              <span className="font-serif italic text-4xl md:text-5xl text-[#F7F5F2] block mb-6">
+                23.0225° N, 72.5714° E
+              </span>
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Sabarmati+Riverfront+Ahmedabad"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-block px-8 py-3 border border-[#F7F5F2]/40 text-[#F7F5F2] hover:bg-[#F7F5F2] hover:text-[#1C1E1A] transition-colors text-[10px] uppercase tracking-[0.3em]"
+              >
+                Open in Maps
+              </a>
+            </div>
           </div>
         </div>
       </section>

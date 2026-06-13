@@ -66,19 +66,27 @@ const timeline = [
 
 function AboutPage() {
   return (
-    <main className="bg-[#F7F5F2] text-[#1C1E1A] font-sans pt-24">
-      {/* Page Header */}
-      <section className="px-6 md:px-12 pt-12 pb-16 md:pt-20 md:pb-24 max-w-7xl mx-auto">
-        <span className="font-mono text-[10px] uppercase tracking-widest text-[#9D8A6C] mb-6 block">
-          The Studio
-        </span>
-        <h1 className="font-serif italic text-5xl md:text-7xl lg:text-8xl leading-[0.85] tracking-tighter text-[#1C1E1A]">
-          Architecture of <br /> silence.
-        </h1>
+    <main className="bg-[#F7F5F2] text-[#1C1E1A] font-sans">
+      {/* Editorial Hero */}
+      <section className="relative h-[90vh] overflow-hidden flex items-end">
+        <img
+          src="/images/showreel-1.jpg"
+          alt="Luxury Ahmedabad living room"
+          className="absolute inset-0 w-full h-full object-cover animate-slow-zoom"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1C1E1A]/70 via-transparent to-[#1C1E1A]/40" />
+        <div className="relative z-10 px-6 md:px-12 pb-20 max-w-7xl mx-auto w-full">
+          <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-[#F7F5F2]/70 mb-8 block">
+            The Studio — Since 2011
+          </span>
+          <h1 className="font-serif italic text-6xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tighter text-[#F7F5F2]">
+            Architecture <br /> of silence.
+          </h1>
+        </div>
       </section>
 
       {/* Founder Story */}
-      <section className="px-6 md:px-12 pb-24 md:pb-32 max-w-7xl mx-auto grid md:grid-cols-12 gap-16 items-start">
+      <section className="px-6 md:px-12 py-24 md:py-32 max-w-7xl mx-auto grid md:grid-cols-12 gap-16 items-start">
         <div className="md:col-span-5">
           <img
             src="/images/about-detail.jpg"
@@ -86,8 +94,17 @@ function AboutPage() {
             loading="lazy"
             className="w-full aspect-[4/5] object-cover"
           />
+          <img
+            src="/images/texture-detail.jpg"
+            alt="Material layering detail"
+            loading="lazy"
+            className="w-full aspect-[4/5] object-cover mt-6 md:mt-12"
+          />
         </div>
         <div className="md:col-span-6 md:col-start-7 pt-4">
+          <span className="font-mono text-[10px] uppercase tracking-widest text-[#9D8A6C] mb-6 block">
+            Founder's Note
+          </span>
           <h2 className="font-serif text-3xl md:text-4xl leading-tight mb-8 text-[#1C1E1A]">
             Founded on the principle that a room should feel like a deep breath.
           </h2>
@@ -102,6 +119,23 @@ function AboutPage() {
               Today, Vivanta designs for clients who understand that true luxury is not about accumulation, but about curation. Every project begins with silence: a walk through the site at dawn, listening to how light enters, how wind moves, how the building already wants to breathe.
             </p>
           </div>
+          <img
+            src="/images/studio-team.jpg"
+            alt="Vivanta studio team reviewing material samples"
+            loading="lazy"
+            className="w-full aspect-[16/10] object-cover mt-12"
+          />
+        </div>
+      </section>
+
+      {/* Full-bleed atelier image */}
+      <section className="relative h-[60vh] overflow-hidden">
+        <img src="/images/showreel-2.jpg" alt="Walnut dining room at dusk" loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-[#1C1E1A]/40" />
+        <div className="relative z-10 h-full flex items-center justify-center text-center px-6">
+          <blockquote className="font-serif italic text-3xl md:text-5xl text-[#F7F5F2] max-w-3xl leading-tight">
+            "We do not design rooms. <br />We design the silence between objects."
+          </blockquote>
         </div>
       </section>
 
