@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
+import { Reveal } from "@/components/Reveal";
 
 export const Route = createFileRoute("/projects/$slug")({
   head: ({ params }) => ({
@@ -26,6 +27,7 @@ function getProjectTitle(slug: string): string {
 }
 
 const projectData: Record<string, {
+  slug: string;
   title: string;
   category: string;
   location: string;
@@ -40,6 +42,7 @@ const projectData: Record<string, {
   related: string[];
 }> = {
   "riverfront-pavilion": {
+    slug: "riverfront-pavilion",
     title: "The Riverfront Pavilion",
     category: "Residential",
     location: "Ahmedabad, Gujarat",
@@ -54,6 +57,7 @@ const projectData: Record<string, {
     related: ["aurum-collective", "sand-house"],
   },
   "aurum-collective": {
+    slug: "aurum-collective",
     title: "Aurum Collective",
     category: "Commercial",
     location: "Mumbai, Maharashtra",
@@ -68,6 +72,7 @@ const projectData: Record<string, {
     related: ["equinox-hub", "the-olive-hotel"],
   },
   "sand-house": {
+    slug: "sand-house",
     title: "The Sand House",
     category: "Residential",
     location: "Ahmedabad, Gujarat",
@@ -82,6 +87,7 @@ const projectData: Record<string, {
     related: ["riverfront-pavilion", "basalt-pavilion"],
   },
   "equinox-hub": {
+    slug: "equinox-hub",
     title: "Equinox Corporate Hub",
     category: "Commercial",
     location: "GIFT City, Gujarat",
@@ -96,6 +102,7 @@ const projectData: Record<string, {
     related: ["aurum-collective", "basalt-pavilion"],
   },
   "basalt-pavilion": {
+    slug: "basalt-pavilion",
     title: "Basalt Pavilion & Arts",
     category: "Commercial",
     location: "Ahmedabad, Gujarat",
@@ -110,6 +117,7 @@ const projectData: Record<string, {
     related: ["aurum-collective", "equinox-hub"],
   },
   "the-olive-hotel": {
+    slug: "the-olive-hotel",
     title: "The Olive Hotel",
     category: "Hospitality",
     location: "Udaipur, Rajasthan",
@@ -179,20 +187,20 @@ function ProjectDetailPage() {
       <section className="px-6 md:px-12 py-16 md:py-24 max-w-7xl mx-auto">
         <div className="grid md:grid-cols-12 gap-16">
           <div className="md:col-span-7 space-y-16">
-            <div>
+            <Reveal>
               <h2 className="font-serif text-3xl mb-6 text-[#1C1E1A]">Project Overview</h2>
               <p className="text-[#8A8580] leading-relaxed text-pretty">{project.overview}</p>
-            </div>
-            <div>
+            </Reveal>
+            <Reveal delay={100}>
               <h2 className="font-serif text-3xl mb-6 text-[#1C1E1A]">The Challenge</h2>
               <p className="text-[#8A8580] leading-relaxed text-pretty">{project.challenge}</p>
-            </div>
-            <div>
+            </Reveal>
+            <Reveal delay={200}>
               <h2 className="font-serif text-3xl mb-6 text-[#1C1E1A]">Design Concept</h2>
               <p className="text-[#8A8580] leading-relaxed text-pretty">{project.concept}</p>
-            </div>
+            </Reveal>
           </div>
-          <div className="md:col-span-4 md:col-start-9">
+          <Reveal className="md:col-span-4 md:col-start-9" delay={100}>
             <div className="sticky top-32">
               <h3 className="font-mono text-[10px] uppercase tracking-widest text-[#9D8A6C] mb-6 block">
                 Materials
@@ -205,7 +213,7 @@ function ProjectDetailPage() {
                 ))}
               </ul>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -216,13 +224,13 @@ function ProjectDetailPage() {
         </h2>
         <div className="grid gap-6">
           {project.images.map((img, i) => (
-            <img
-              key={i}
+            <Reveal key={i} as="img"
               src={img}
               alt={`${project.title} — image ${i + 1}`}
               loading="lazy"
               className="w-full object-cover"
               style={{ aspectRatio: i === 0 ? "16/9" : "3/4", maxHeight: i === 0 ? "70vh" : "80vh" }}
+              delay={(i % 4) * 100}
             />
           ))}
         </div>
@@ -234,12 +242,14 @@ function ProjectDetailPage() {
           Related Projects
         </h2>
         <div className="grid md:grid-cols-2 gap-12">
-          {relatedProjects.map((rp) => (
-            <Link
-              key={rp.title}
+          {relatedProjects.map((rp, i) => (
+            <Reveal
+              key={rp.slug}
+              as={Link}
               to="/projects/$slug"
-              params={{ slug: rp.related?.[0] || "riverfront-pavilion" }}
+              params={{ slug: rp.slug }}
               className="group cursor-pointer block"
+              delay={i * 100}
             >
               <div className="relative overflow-hidden mb-4">
                 <img
@@ -253,7 +263,7 @@ function ProjectDetailPage() {
               <p className="text-[10px] uppercase tracking-widest text-[#8A8580]">
                 {rp.category} — {rp.location}
               </p>
-            </Link>
+            </Reveal>
           ))}
         </div>
       </section>

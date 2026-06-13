@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
+import { Reveal } from "@/components/Reveal";
 
 export const Route = createFileRoute("/projects")({
   head: () => ({
@@ -130,7 +131,7 @@ function ProjectsPage() {
           <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-[#F7F5F2]/70 mb-6 block">
             Portfolio — 120+ Works
           </span>
-          <h1 className="font-serif italic text-6xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tighter text-[#F7F5F2]">
+          <h1 className="font-serif italic text-5xl sm:text-6xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tighter text-[#F7F5F2]">
             Selected <br /> Commissions.
           </h1>
         </div>
@@ -159,11 +160,13 @@ function ProjectsPage() {
       <section className="px-6 md:px-12 pb-24 md:pb-32 max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-x-12 gap-y-16 md:gap-y-24">
           {filtered.map((project, i) => (
-            <Link
+            <Reveal
               key={`${project.slug}-${i}`}
+              as={Link}
               to="/projects/$slug"
               params={{ slug: project.slug }}
               className={`group cursor-pointer block ${i % 2 === 1 ? "md:mt-20" : ""}`}
+              delay={(i % 4) * 100}
             >
               <div className="relative overflow-hidden mb-6">
                 <img
@@ -188,7 +191,7 @@ function ProjectsPage() {
                   {project.year}
                 </span>
               </div>
-            </Link>
+            </Reveal>
           ))}
         </div>
       </section>

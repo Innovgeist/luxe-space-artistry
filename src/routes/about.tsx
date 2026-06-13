@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Reveal } from "@/components/Reveal";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -79,7 +80,7 @@ function AboutPage() {
           <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-[#F7F5F2]/70 mb-8 block">
             The Studio — Since 2011
           </span>
-          <h1 className="font-serif italic text-6xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tighter text-[#F7F5F2]">
+          <h1 className="font-serif italic text-5xl sm:text-6xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tighter text-[#F7F5F2]">
             Architecture <br /> of silence.
           </h1>
         </div>
@@ -87,7 +88,7 @@ function AboutPage() {
 
       {/* Founder Story */}
       <section className="px-6 md:px-12 py-24 md:py-32 max-w-7xl mx-auto grid md:grid-cols-12 gap-16 items-start">
-        <div className="md:col-span-5">
+        <Reveal className="md:col-span-5">
           <img
             src="/images/about-detail.jpg"
             alt="Material texture study"
@@ -100,8 +101,8 @@ function AboutPage() {
             loading="lazy"
             className="w-full aspect-[4/5] object-cover mt-6 md:mt-12"
           />
-        </div>
-        <div className="md:col-span-6 md:col-start-7 pt-4">
+        </Reveal>
+        <Reveal className="md:col-span-6 md:col-start-7 pt-4" delay={200}>
           <span className="font-mono text-[10px] uppercase tracking-widest text-[#9D8A6C] mb-6 block">
             Founder's Note
           </span>
@@ -125,7 +126,7 @@ function AboutPage() {
             loading="lazy"
             className="w-full aspect-[16/10] object-cover mt-12"
           />
-        </div>
+        </Reveal>
       </section>
 
       {/* Full-bleed atelier image */}
@@ -133,30 +134,32 @@ function AboutPage() {
         <img src="/images/showreel-2.jpg" alt="Walnut dining room at dusk" loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-[#1C1E1A]/40" />
         <div className="relative z-10 h-full flex items-center justify-center text-center px-6">
-          <blockquote className="font-serif italic text-3xl md:text-5xl text-[#F7F5F2] max-w-3xl leading-tight">
+          <Reveal as="blockquote" className="font-serif italic text-3xl md:text-5xl text-[#F7F5F2] max-w-3xl leading-tight">
             "We do not design rooms. <br />We design the silence between objects."
-          </blockquote>
+          </Reveal>
         </div>
       </section>
 
       {/* Design Philosophy */}
       <section className="bg-[#1C1E1A] text-[#F7F5F2] py-24 md:py-32 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
-          <span className="font-mono text-[10px] uppercase tracking-widest text-[#9D8A6C] mb-6 block">
-            Philosophy
-          </span>
-          <h2 className="font-serif text-4xl md:text-5xl mb-16 text-[#F7F5F2]">
-            Our guiding principles.
-          </h2>
+          <Reveal>
+            <span className="font-mono text-[10px] uppercase tracking-widest text-[#9D8A6C] mb-6 block">
+              Philosophy
+            </span>
+            <h2 className="font-serif text-4xl md:text-5xl mb-16 text-[#F7F5F2]">
+              Our guiding principles.
+            </h2>
+          </Reveal>
           <div className="grid md:grid-cols-2 gap-px bg-[#F7F5F2]/10">
             {values.map((v, i) => (
-              <div key={i} className="bg-[#1C1E1A] p-10 md:p-12 group hover:bg-[#3E4437] transition-colors duration-500">
+              <Reveal key={i} className="bg-[#1C1E1A] p-10 md:p-12 group hover:bg-[#3E4437] transition-colors duration-500" delay={(i % 4) * 100}>
                 <span className="font-mono text-[#9D8A6C] text-[10px] uppercase tracking-widest mb-6 block">
                   0{i + 1}
                 </span>
                 <h3 className="font-serif text-2xl mb-4 text-[#F7F5F2]">{v.title}</h3>
                 <p className="text-sm leading-relaxed text-[#F7F5F2]/50">{v.desc}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -164,33 +167,37 @@ function AboutPage() {
 
       {/* Team */}
       <section className="py-24 md:py-32 px-6 md:px-12 max-w-7xl mx-auto">
-        <span className="font-mono text-[10px] uppercase tracking-widest text-[#9D8A6C] mb-6 block">
-          The Team
-        </span>
-        <h2 className="font-serif text-4xl md:text-5xl mb-16 text-[#1C1E1A]">
-          People who build silence.
-        </h2>
+        <Reveal>
+          <span className="font-mono text-[10px] uppercase tracking-widest text-[#9D8A6C] mb-6 block">
+            The Team
+          </span>
+          <h2 className="font-serif text-4xl md:text-5xl mb-16 text-[#1C1E1A]">
+            People who build silence.
+          </h2>
+        </Reveal>
         <div className="grid md:grid-cols-2 gap-12 md:gap-16">
-          {teamMembers.map((member) => (
-            <div key={member.name} className="border-t border-[#1C1E1A]/10 pt-8">
+          {teamMembers.map((member, i) => (
+            <Reveal key={member.name} className="border-t border-[#1C1E1A]/10 pt-8" delay={(i % 2) * 100}>
               <h3 className="font-serif text-2xl text-[#1C1E1A] mb-1">{member.name}</h3>
               <span className="text-[10px] uppercase tracking-widest text-[#9D8A6C] mb-4 block">
                 {member.role}
               </span>
               <p className="text-sm text-[#8A8580] leading-relaxed">{member.bio}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
 
       {/* Process */}
       <section className="py-24 md:py-32 px-6 md:px-12 max-w-7xl mx-auto border-t border-[#1C1E1A]/10">
-        <span className="font-mono text-[10px] uppercase tracking-widest text-[#9D8A6C] mb-6 block">
-          Our Process
-        </span>
-        <h2 className="font-serif text-4xl md:text-5xl mb-16 text-[#1C1E1A]">
-          From silence to space.
-        </h2>
+        <Reveal>
+          <span className="font-mono text-[10px] uppercase tracking-widest text-[#9D8A6C] mb-6 block">
+            Our Process
+          </span>
+          <h2 className="font-serif text-4xl md:text-5xl mb-16 text-[#1C1E1A]">
+            From silence to space.
+          </h2>
+        </Reveal>
         <div className="grid md:grid-cols-2 gap-12">
           {[
             { step: "01", title: "Discovery", desc: "We immerse ourselves in the site, the light, and the lives that will inhabit the space. Interviews, site walks, and mood studies." },
@@ -199,12 +206,12 @@ function AboutPage() {
             { step: "04", title: "Material Selection", desc: "We source every surface personally — from Rajasthan sandstone to Belgian linen — visiting quarries, mills, and ateliers." },
             { step: "05", title: "Execution", desc: "Our on-site team manages every detail with the same rigor as the design phase. Weekly site visits ensure perfection." },
             { step: "06", title: "Handover", desc: "A final walk-through, object styling, and a hand-bound book documenting every material and decision in your space." },
-          ].map((p) => (
-            <div key={p.step} className="group">
+          ].map((p, i) => (
+            <Reveal key={p.step} className="group" delay={(i % 2) * 100}>
               <span className="font-mono text-[#9D8A6C] text-4xl block mb-4">{p.step}</span>
               <h3 className="font-serif text-2xl text-[#1C1E1A] mb-3">{p.title}</h3>
               <p className="text-sm text-[#8A8580] leading-relaxed">{p.desc}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -212,21 +219,25 @@ function AboutPage() {
       {/* Timeline */}
       <section className="bg-[#EDEAE5]/50 py-24 md:py-32 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
-          <span className="font-mono text-[10px] uppercase tracking-widest text-[#9D8A6C] mb-6 block">
-            Journey
-          </span>
-          <h2 className="font-serif text-4xl md:text-5xl mb-16 text-[#1C1E1A]">
-            The path so far.
-          </h2>
+          <Reveal>
+            <span className="font-mono text-[10px] uppercase tracking-widest text-[#9D8A6C] mb-6 block">
+              Journey
+            </span>
+            <h2 className="font-serif text-4xl md:text-5xl mb-16 text-[#1C1E1A]">
+              The path so far.
+            </h2>
+          </Reveal>
           <div className="space-y-0">
             {timeline.map((item, i) => (
-              <div
+              <Reveal
                 key={i}
+                as="div"
                 className="flex flex-col md:flex-row gap-4 md:gap-16 py-8 border-t border-[#1C1E1A]/10"
+                delay={(i % 4) * 100}
               >
                 <span className="font-mono text-[#9D8A6C] text-xl md:w-20">{item.year}</span>
                 <p className="text-[#1C1E1A] text-sm md:text-base leading-relaxed">{item.event}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>

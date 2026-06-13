@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Reveal } from "@/components/Reveal";
 
 export const Route = createFileRoute("/testimonials")({
   head: () => ({
@@ -73,7 +74,7 @@ function TestimonialsPage() {
           <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-[#F7F5F2]/70 mb-6 block">
             Voices
           </span>
-          <h1 className="font-serif italic text-6xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tighter text-[#F7F5F2]">
+          <h1 className="font-serif italic text-5xl sm:text-6xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tighter text-[#F7F5F2]">
             Words from <br /> Those We Serve.
           </h1>
         </div>
@@ -81,7 +82,7 @@ function TestimonialsPage() {
 
       {/* Featured Quote */}
       <section className="px-6 md:px-12 pt-24 pb-16 max-w-7xl mx-auto">
-        <div className="bg-[#1C1E1A] text-[#F7F5F2] p-12 md:p-20">
+        <Reveal className="bg-[#1C1E1A] text-[#F7F5F2] p-12 md:p-20">
           <span className="text-[#9D8A6C] text-5xl font-serif block mb-8">&ldquo;</span>
           <blockquote className="font-serif text-3xl md:text-5xl leading-snug mb-12 max-w-4xl">
             The resulting space is not just a home; it is a profound silence that speaks volumes about our family's values.
@@ -95,16 +96,17 @@ function TestimonialsPage() {
               </span>
             </div>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* Testimonials Grid */}
       <section className="px-6 md:px-12 pb-24 md:pb-32 max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-px bg-[#1C1E1A]/10">
           {testimonials.map((t, i) => (
-            <div
+            <Reveal
               key={i}
               className="bg-[#F7F5F2] p-10 md:p-14 group hover:bg-[#EDEAE5]/50 transition-colors duration-500"
+              delay={(i % 4) * 100}
             >
               <span className="text-[#9D8A6C] text-3xl font-serif block mb-6">&ldquo;</span>
               <blockquote className="font-serif text-xl md:text-2xl leading-relaxed text-[#1C1E1A] mb-8">
@@ -127,7 +129,7 @@ function TestimonialsPage() {
                   {t.type}
                 </span>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>

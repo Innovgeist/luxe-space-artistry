@@ -337,3 +337,40 @@
 @utility ease-out-expo {
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+/* Route transition */
+@keyframes route-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility animate-route-fade {
+  animation: route-fade-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Respect reduced-motion preferences: disable decorative/looping animations */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .animate-scale-in,
+  .animate-reveal-mask,
+  .animate-line-expand,
+  .animate-slow-zoom,
+  .animate-scroll-line,
+  .animate-ken-1,
+  .animate-ken-2,
+  .animate-ken-3,
+  .animate-marquee,
+  .animate-grain,
+  .animate-route-fade {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+}

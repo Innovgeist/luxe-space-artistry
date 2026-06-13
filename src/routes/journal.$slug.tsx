@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Reveal } from "@/components/Reveal";
 
 export const Route = createFileRoute("/journal/$slug")({
   head: ({ params }) => ({
@@ -157,14 +158,14 @@ function JournalArticlePage() {
       <article className="px-6 md:px-12 pb-24 md:pb-32 max-w-3xl mx-auto">
         <div className="space-y-8">
           {article.content.map((paragraph, i) => (
-            <p key={i} className="text-[#8A8580] leading-relaxed text-base md:text-lg text-pretty">
+            <Reveal key={i} as="p" className="text-[#8A8580] leading-relaxed text-base md:text-lg text-pretty" delay={(i % 4) * 100}>
               {paragraph}
-            </p>
+            </Reveal>
           ))}
         </div>
 
         {/* Share */}
-        <div className="mt-16 pt-8 border-t border-[#1C1E1A]/10">
+        <Reveal className="mt-16 pt-8 border-t border-[#1C1E1A]/10">
           <span className="text-[10px] uppercase tracking-widest text-[#8A8580] mb-4 block">
             Share this article
           </span>
@@ -179,7 +180,7 @@ function JournalArticlePage() {
               WhatsApp
             </a>
           </div>
-        </div>
+        </Reveal>
       </article>
     </main>
   );

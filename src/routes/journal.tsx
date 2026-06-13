@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { Reveal } from "@/components/Reveal";
 
 export const Route = createFileRoute("/journal")({
   head: () => ({
@@ -81,7 +82,7 @@ function JournalPage() {
           <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-[#F7F5F2]/70 mb-6 block">
             Journal — The Editorial
           </span>
-          <h1 className="font-serif italic text-6xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tighter text-[#F7F5F2]">
+          <h1 className="font-serif italic text-5xl sm:text-6xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tighter text-[#F7F5F2]">
             Thoughts on <br /> Space &amp; Light.
           </h1>
         </div>
@@ -89,7 +90,7 @@ function JournalPage() {
 
       {/* Featured Article */}
       <section className="px-6 md:px-12 py-24 max-w-7xl mx-auto">
-        <Link to="/journal/the-art-of-limewash" className="group block">
+        <Reveal as={Link} to="/journal/the-art-of-limewash" className="group block">
           <div className="grid md:grid-cols-2 gap-0">
             <div className="relative overflow-hidden aspect-[4/3] md:aspect-auto">
               <img
@@ -114,17 +115,19 @@ function JournalPage() {
               </span>
             </div>
           </div>
-        </Link>
+        </Reveal>
       </section>
 
       {/* Articles Grid */}
       <section className="px-6 md:px-12 pb-24 md:pb-32 max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
-          {articles.slice(1).map((article) => (
-            <Link
+          {articles.slice(1).map((article, i) => (
+            <Reveal
               key={article.slug}
+              as={Link}
               to={`/journal/${article.slug}`}
               className="group cursor-pointer block"
+              delay={(i % 3) * 100}
             >
               <div className="relative overflow-hidden mb-6 aspect-[4/3]">
                 <img
@@ -151,7 +154,7 @@ function JournalPage() {
               <span className="text-[10px] uppercase tracking-widest text-[#8A8580]">
                 {article.readTime}
               </span>
-            </Link>
+            </Reveal>
           ))}
         </div>
       </section>

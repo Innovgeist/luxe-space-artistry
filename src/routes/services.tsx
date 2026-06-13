@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Reveal } from "@/components/Reveal";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -131,7 +132,7 @@ function ServicesPage() {
           <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-[#F7F5F2]/70 mb-6 block">
             Services
           </span>
-          <h1 className="font-serif italic text-6xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tighter text-[#F7F5F2]">
+          <h1 className="font-serif italic text-5xl sm:text-6xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tighter text-[#F7F5F2]">
             Full-Spectrum <br /> Curation.
           </h1>
         </div>
@@ -141,8 +142,9 @@ function ServicesPage() {
       <section className="px-6 md:px-12 py-24 md:py-32 max-w-7xl mx-auto">
         <div className="space-y-0">
           {services.map((service, i) => (
-            <div
+            <Reveal
               key={service.num}
+              as="div"
               className="border-t border-[#1C1E1A]/10 py-16 md:py-24 grid md:grid-cols-12 gap-8 md:gap-12 items-start"
             >
               <div className="md:col-span-2">
@@ -182,13 +184,13 @@ function ServicesPage() {
               <div className="md:col-span-5 relative overflow-hidden group">
                 <img src={service.image} alt={service.title} loading="lazy" className="w-full aspect-[4/5] object-cover transition-transform duration-[1500ms] group-hover:scale-105" />
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
 
       {/* CTA */}
-      <section className="bg-[#1C1E1A] text-[#F7F5F2] py-24 md:py-32 px-6 md:px-12 text-center">
+      <Reveal as="section" className="bg-[#1C1E1A] text-[#F7F5F2] py-24 md:py-32 px-6 md:px-12 text-center">
         <h2 className="font-serif italic text-4xl md:text-6xl mb-8 leading-tight">
           A service, <br />or a singular vision?
         </h2>
@@ -198,7 +200,7 @@ function ServicesPage() {
         <a href="/contact" className="inline-block px-12 py-5 bg-[#F7F5F2] text-[#1C1E1A] hover:bg-[#9D8A6C] hover:text-[#F7F5F2] transition-colors duration-500 text-[10px] uppercase tracking-[0.3em] font-medium">
           Begin a Dialogue
         </a>
-      </section>
+      </Reveal>
     </main>
   );
 }

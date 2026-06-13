@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { Reveal } from "@/components/Reveal";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -38,7 +39,7 @@ function ContactPage() {
           <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-[#F7F5F2]/70 mb-6 block">
             Inquiry — By Appointment
           </span>
-          <h1 className="font-serif italic text-6xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tighter text-[#F7F5F2]">
+          <h1 className="font-serif italic text-5xl sm:text-6xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tighter text-[#F7F5F2]">
             Begin the <br /> Dialogue.
           </h1>
         </div>
@@ -47,7 +48,7 @@ function ContactPage() {
       {/* Contact Grid */}
       <section className="px-6 md:px-12 py-24 md:py-32 max-w-7xl mx-auto grid md:grid-cols-12 gap-16">
         {/* Contact Info */}
-        <div className="md:col-span-4">
+        <Reveal className="md:col-span-4">
           <div className="sticky top-32 space-y-12">
             <div>
               <h3 className="text-[10px] uppercase tracking-widest font-bold mb-4 text-[#1C1E1A]">
@@ -100,10 +101,10 @@ function ContactPage() {
               </p>
             </div>
           </div>
-        </div>
+        </Reveal>
 
         {/* Form */}
-        <div className="md:col-span-7 md:col-start-6">
+        <Reveal className="md:col-span-7 md:col-start-6" delay={100}>
           {submitted ? (
             <div className="bg-[#EDEAE5]/50 p-12 md:p-16 text-center">
               <span className="text-[#9D8A6C] text-5xl font-serif block mb-6">&ldquo;</span>
@@ -126,7 +127,7 @@ function ContactPage() {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full bg-transparent border-b border-[#1C1E1A]/20 py-3 text-sm focus:outline-none focus:border-[#9D8A6C] transition-colors"
+                    className="w-full bg-transparent border-b border-[#1C1E1A]/20 py-3 text-base md:text-sm focus:outline-none focus:border-[#9D8A6C] transition-colors"
                     placeholder="Your name"
                   />
                 </div>
@@ -139,7 +140,7 @@ function ContactPage() {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full bg-transparent border-b border-[#1C1E1A]/20 py-3 text-sm focus:outline-none focus:border-[#9D8A6C] transition-colors"
+                    className="w-full bg-transparent border-b border-[#1C1E1A]/20 py-3 text-base md:text-sm focus:outline-none focus:border-[#9D8A6C] transition-colors"
                     placeholder="your@email.com"
                   />
                 </div>
@@ -154,7 +155,7 @@ function ContactPage() {
                     type="tel"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full bg-transparent border-b border-[#1C1E1A]/20 py-3 text-sm focus:outline-none focus:border-[#9D8A6C] transition-colors"
+                    className="w-full bg-transparent border-b border-[#1C1E1A]/20 py-3 text-base md:text-sm focus:outline-none focus:border-[#9D8A6C] transition-colors"
                     placeholder="+91 ..."
                   />
                 </div>
@@ -165,7 +166,7 @@ function ContactPage() {
                   <select
                     value={formData.projectType}
                     onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                    className="w-full bg-transparent border-b border-[#1C1E1A]/20 py-3 text-sm focus:outline-none focus:border-[#9D8A6C] transition-colors"
+                    className="w-full bg-transparent border-b border-[#1C1E1A]/20 py-3 text-base md:text-sm focus:outline-none focus:border-[#9D8A6C] transition-colors"
                   >
                     <option value="">Select...</option>
                     <option value="residential">Residential</option>
@@ -184,7 +185,7 @@ function ContactPage() {
                 <select
                   value={formData.budget}
                   onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                  className="w-full bg-transparent border-b border-[#1C1E1A]/20 py-3 text-sm focus:outline-none focus:border-[#9D8A6C] transition-colors"
+                  className="w-full bg-transparent border-b border-[#1C1E1A]/20 py-3 text-base md:text-sm focus:outline-none focus:border-[#9D8A6C] transition-colors"
                 >
                   <option value="">Select range...</option>
                   <option value="50L-1Cr">50 Lakhs — 1 Crore</option>
@@ -203,7 +204,7 @@ function ContactPage() {
                   rows={5}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full bg-transparent border-b border-[#1C1E1A]/20 py-3 text-sm focus:outline-none focus:border-[#9D8A6C] transition-colors resize-none"
+                  className="w-full bg-transparent border-b border-[#1C1E1A]/20 py-3 text-base md:text-sm focus:outline-none focus:border-[#9D8A6C] transition-colors resize-none"
                   placeholder="Share your vision, timeline, and any specific requirements..."
                 />
               </div>
@@ -216,12 +217,12 @@ function ContactPage() {
               </button>
             </form>
           )}
-        </div>
+        </Reveal>
       </section>
 
       {/* Map Placeholder */}
       <section className="px-6 md:px-12 pb-24 md:pb-32 max-w-7xl mx-auto">
-        <div className="relative w-full h-[500px] overflow-hidden">
+        <Reveal className="relative w-full h-[500px] overflow-hidden">
           <img src="/images/project-exterior.jpg" alt="Studio location, Ahmedabad" loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
           <div className="absolute inset-0 bg-[#1C1E1A]/40" />
           <div className="relative z-10 h-full flex items-center justify-center text-center">
@@ -242,7 +243,7 @@ function ContactPage() {
               </a>
             </div>
           </div>
-        </div>
+        </Reveal>
       </section>
     </main>
   );

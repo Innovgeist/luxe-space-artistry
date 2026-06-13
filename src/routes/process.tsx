@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Reveal } from "@/components/Reveal";
 
 export const Route = createFileRoute("/process")({
   head: () => ({
@@ -67,7 +68,7 @@ function ProcessPage() {
           <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-[#F7F5F2]/70 mb-6 block">
             Process
           </span>
-          <h1 className="font-serif italic text-6xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tighter text-[#F7F5F2]">
+          <h1 className="font-serif italic text-5xl sm:text-6xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tighter text-[#F7F5F2]">
             From Silence <br /> to Space.
           </h1>
         </div>
@@ -80,8 +81,9 @@ function ProcessPage() {
           <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-[#1C1E1A]/10 md:-translate-x-px" />
 
           {steps.map((step, i) => (
-            <div
+            <Reveal
               key={step.num}
+              as="div"
               className={`relative grid md:grid-cols-2 gap-8 md:gap-16 py-16 ${
                 i !== steps.length - 1 ? "border-b border-[#1C1E1A]/5" : ""
               }`}
@@ -119,14 +121,14 @@ function ProcessPage() {
                   {step.detail}
                 </p>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
 
       {/* Commitment */}
       <section className="bg-[#1C1E1A] text-[#F7F5F2] py-24 md:py-32 px-6 md:px-12">
-        <div className="max-w-4xl mx-auto text-center">
+        <Reveal className="max-w-4xl mx-auto text-center">
           <span className="font-mono text-[10px] uppercase tracking-widest text-[#9D8A6C] mb-6 block">
             Our Commitment
           </span>
@@ -136,7 +138,7 @@ function ProcessPage() {
           <p className="text-[#F7F5F2]/60 max-w-2xl mx-auto leading-relaxed text-pretty">
             To maintain the quality and attention each project deserves, we limit our active commissions to twelve per year. This ensures our team can be present on site, our designers can personally review every material sample, and no detail is delegated to chance.
           </p>
-        </div>
+        </Reveal>
       </section>
     </main>
   );
