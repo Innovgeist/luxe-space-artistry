@@ -160,7 +160,7 @@ function ProjectsPage() {
         <div className="grid md:grid-cols-2 gap-x-12 gap-y-16 md:gap-y-24">
           {filtered.map((project, i) => (
             <Link
-              key={project.slug}
+              key={`${project.slug}-${i}`}
               to="/projects/$slug"
               params={{ slug: project.slug }}
               className={`group cursor-pointer block ${i % 2 === 1 ? "md:mt-20" : ""}`}
