@@ -150,6 +150,13 @@
   }
 }
 
+/* Hide the native cursor in favor of <CustomCursor /> on precise pointers */
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  * {
+    cursor: none !important;
+  }
+}
+
 /* Custom animation keyframes */
 @keyframes fade-up {
   from {
@@ -342,16 +349,18 @@
 @keyframes route-fade-in {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(16px) scale(0.99);
+    filter: blur(4px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
+    filter: blur(0);
   }
 }
 
 @utility animate-route-fade {
-  animation: route-fade-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: route-fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* Respect reduced-motion preferences: disable decorative/looping animations */

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Reveal } from "@/components/Reveal";
+import { TiltCard } from "@/components/TiltCard";
 
 export const Route = createFileRoute("/process")({
   head: () => ({
@@ -105,7 +106,9 @@ function ProcessPage() {
                 <h2 className="font-serif text-3xl md:text-4xl text-[#1C1E1A] mb-6">
                   {step.title}
                 </h2>
-                <img src={step.image} alt={step.title} loading="lazy" className="w-full aspect-[4/3] object-cover mt-6" />
+                <TiltCard className="overflow-hidden mt-6" max={4}>
+                  <img src={step.image} alt={step.title} loading="lazy" className="w-full aspect-[4/3] object-cover transition-transform duration-700 hover:scale-105" />
+                </TiltCard>
               </div>
 
               {/* Right content (even steps) */}

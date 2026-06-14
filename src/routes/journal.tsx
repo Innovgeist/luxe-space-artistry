@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/Reveal";
+import { TiltCard } from "@/components/TiltCard";
 
 export const Route = createFileRoute("/journal")({
   head: () => ({
@@ -92,14 +93,14 @@ function JournalPage() {
       <section className="px-6 md:px-12 py-24 max-w-7xl mx-auto">
         <Reveal as={Link} to="/journal/the-art-of-limewash" className="group block">
           <div className="grid md:grid-cols-2 gap-0">
-            <div className="relative overflow-hidden aspect-[4/3] md:aspect-auto">
+            <TiltCard className="relative overflow-hidden aspect-[4/3] md:aspect-auto" max={3}>
               <img
                 src="/images/about-detail.jpg"
                 alt="Limewash texture study"
                 loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
               />
-            </div>
+            </TiltCard>
             <div className="bg-[#1C1E1A] text-[#F7F5F2] p-10 md:p-16 flex flex-col justify-center">
               <span className="font-mono text-[10px] uppercase tracking-widest text-[#9D8A6C] mb-4 block">
                 Featured — Materials
@@ -129,14 +130,14 @@ function JournalPage() {
               className="group cursor-pointer block"
               delay={(i % 3) * 100}
             >
-              <div className="relative overflow-hidden mb-6 aspect-[4/3]">
+              <TiltCard className="relative overflow-hidden mb-6 aspect-[4/3]" max={4}>
                 <img
                   src={article.image}
                   alt={article.title}
                   loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-              </div>
+              </TiltCard>
               <div className="flex justify-between items-center mb-3">
                 <span className="text-[10px] uppercase tracking-widest text-[#9D8A6C]">
                   {article.category}

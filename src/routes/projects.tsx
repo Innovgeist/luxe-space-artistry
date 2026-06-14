@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Reveal } from "@/components/Reveal";
+import { TiltCard } from "@/components/TiltCard";
+import { Magnetic } from "@/components/Magnetic";
 
 export const Route = createFileRoute("/projects")({
   head: () => ({
@@ -141,17 +143,21 @@ function ProjectsPage() {
       <section className="px-6 md:px-12 pt-16 pb-8 max-w-7xl mx-auto">
         <div className="flex flex-wrap gap-6 border-b border-[#1C1E1A]/10 pb-6">
           {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveFilter(cat)}
-              className={`text-[10px] uppercase tracking-[0.2em] font-medium transition-colors duration-300 ${
-                activeFilter === cat
-                  ? "text-[#1C1E1A]"
-                  : "text-[#8A8580] hover:text-[#1C1E1A]"
-              }`}
-            >
-              {cat}
-            </button>
+            <Magnetic key={cat} strength={0.4}>
+              <button
+                onClick={() => setActiveFilter(cat)}
+                className={`relative text-[10px] uppercase tracking-[0.2em] font-medium transition-colors duration-300 pb-1 ${
+                  activeFilter === cat
+                    ? "text-[#1C1E1A]"
+                    : "text-[#8A8580] hover:text-[#1C1E1A]"
+                }`}
+              >
+                {cat}
+                {activeFilter === cat && (
+                  <span className="absolute -bottom-2 left-0 right-0 h-px bg-[#9D8A6C] animate-line-expand" />
+                )}
+              </button>
+            </Magnetic>
           ))}
         </div>
       </section>
@@ -168,7 +174,7 @@ function ProjectsPage() {
               className={`group cursor-pointer block ${i % 2 === 1 ? "md:mt-20" : ""}`}
               delay={(i % 4) * 100}
             >
-              <div className="relative overflow-hidden mb-6">
+              <TiltCard className="relative overflow-hidden mb-6" max={4}>
                 <img
                   src={project.image}
                   alt={project.title}
@@ -177,7 +183,7 @@ function ProjectsPage() {
                   style={{ aspectRatio: project.aspect }}
                 />
                 <div className="absolute inset-0 bg-[#3E4437]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </div>
+              </TiltCard>
               <div className="flex justify-between items-start">
                 <div>
                   <h3 className="font-serif text-2xl text-[#1C1E1A] mb-1">

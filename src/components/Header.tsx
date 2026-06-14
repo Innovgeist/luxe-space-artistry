@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { Magnetic } from "./Magnetic";
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -11,6 +12,13 @@ export function Header() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
 
   const navLinks = [
     { to: "/", label: "Home" },
@@ -44,14 +52,16 @@ export function Header() {
         {/* Desktop nav */}
         <nav className="hidden md:flex gap-10 items-center">
           {navLinks.slice(1).map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              className={`text-[10px] uppercase tracking-[0.2em] font-medium transition-colors duration-300 hover:text-[#9D8A6C] ${textClass}`}
-              activeProps={{ className: "text-[#9D8A6C]" }}
-            >
-              {link.label}
-            </Link>
+            <Magnetic key={link.to} strength={0.4}>
+              <Link
+                to={link.to}
+                className={`group relative text-[10px] uppercase tracking-[0.2em] font-medium transition-colors duration-300 hover:text-[#9D8A6C] ${textClass}`}
+                activeProps={{ className: "text-[#9D8A6C]" }}
+              >
+                {link.label}
+                <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-[#9D8A6C] transition-all duration-300 ease-out-expo group-hover:w-full" />
+              </Link>
+            </Magnetic>
           ))}
         </nav>
 
@@ -79,18 +89,31 @@ export function Header() {
 
       {/* Mobile menu overlay */}
       {mobileOpen && (
-        <div className="fixed inset-0 bg-[#F7F5F2] z-40 flex flex-col items-center justify-center gap-8">
-          {navLinks.map((link, i) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              onClick={() => setMobileOpen(false)}
-              className="font-serif text-3xl text-[#1C1E1A] hover:text-[#9D8A6C] transition-colors animate-fade-up"
-              style={{ animationDelay: `${i * 60}ms` }}
-            >
-              {link.label}
-            </Link>
-          ))}
+        <div className="fixed inset-0 bg-[#F7F5F2] z-40 flex flex-col justify-center px-8 animate-reveal-mask">
+          <nav className="flex flex-col gap-1">
+            {navLinks.map((link, i) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                onClick={() => setMobileOpen(false)}
+                className="group flex items-baseline gap-4 py-3 border-b border-[#1C1E1A]/10 animate-fade-up active:translate-x-1 transition-transform"
+                style={{ animationDelay: `${i * 60}ms` }}
+                activeProps={{ className: "text-[#9D8A6C]" }}
+              >
+                <span className="font-mono text-[10px] text-[#9D8A6C]">{String(i + 1).padStart(2, "0")}</span>
+                <span className="font-serif text-4xl text-[#1C1E1A] group-hover:text-[#9D8A6C] group-hover:translate-x-2 transition-all duration-300 inline-block">
+                  {link.label}
+                </span>
+              </Link>
+            ))}
+          </nav>
+          <div
+            className="mt-12 flex justify-between text-[10px] uppercase tracking-[0.3em] text-[#8A8580] animate-fade-up"
+            style={{ animationDelay: `${navLinks.length * 60 + 100}ms` }}
+          >
+            <span>Ahmedabad — India</span>
+            <span>Est. 2011</span>
+          </div>
         </div>
       )}
     </header>

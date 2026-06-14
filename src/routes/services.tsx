@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Reveal } from "@/components/Reveal";
+import { TiltCard } from "@/components/TiltCard";
+import { Magnetic } from "@/components/Magnetic";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -181,9 +183,9 @@ function ServicesPage() {
                   />
                 </div>
               </div>
-              <div className="md:col-span-5 relative overflow-hidden group">
+              <TiltCard className="md:col-span-5 relative overflow-hidden group" max={4}>
                 <img src={service.image} alt={service.title} loading="lazy" className="w-full aspect-[4/5] object-cover transition-transform duration-[1500ms] group-hover:scale-105" />
-              </div>
+              </TiltCard>
             </Reveal>
           ))}
         </div>
@@ -197,9 +199,11 @@ function ServicesPage() {
         <p className="text-[#F7F5F2]/60 max-w-xl mx-auto mb-12 leading-relaxed">
           Every Vivanta engagement is shaped to the commission, not the catalogue. Tell us what you are building.
         </p>
-        <a href="/contact" className="inline-block px-12 py-5 bg-[#F7F5F2] text-[#1C1E1A] hover:bg-[#9D8A6C] hover:text-[#F7F5F2] transition-colors duration-500 text-[10px] uppercase tracking-[0.3em] font-medium">
-          Begin a Dialogue
-        </a>
+        <Magnetic strength={0.25}>
+          <a href="/contact" className="inline-block px-12 py-5 bg-[#F7F5F2] text-[#1C1E1A] hover:bg-[#9D8A6C] hover:text-[#F7F5F2] transition-colors duration-500 text-[10px] uppercase tracking-[0.3em] font-medium">
+            Begin a Dialogue
+          </a>
+        </Magnetic>
       </Reveal>
     </main>
   );

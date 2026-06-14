@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Reveal } from "@/components/Reveal";
+import { Magnetic } from "@/components/Magnetic";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -79,15 +80,13 @@ function ContactPage() {
                 Connect
               </h3>
               <div className="flex gap-6">
-                <a href="#" className="text-sm text-[#8A8580] hover:text-[#9D8A6C] transition-colors">
-                  Instagram
-                </a>
-                <a href="#" className="text-sm text-[#8A8580] hover:text-[#9D8A6C] transition-colors">
-                  LinkedIn
-                </a>
-                <a href="#" className="text-sm text-[#8A8580] hover:text-[#9D8A6C] transition-colors">
-                  WhatsApp
-                </a>
+                {["Instagram", "LinkedIn", "WhatsApp"].map((label) => (
+                  <Magnetic key={label} strength={0.5}>
+                    <a href="#" className="text-sm text-[#8A8580] hover:text-[#9D8A6C] transition-colors">
+                      {label}
+                    </a>
+                  </Magnetic>
+                ))}
               </div>
             </div>
             <div>
@@ -106,8 +105,8 @@ function ContactPage() {
         {/* Form */}
         <Reveal className="md:col-span-7 md:col-start-6" delay={100}>
           {submitted ? (
-            <div className="bg-[#EDEAE5]/50 p-12 md:p-16 text-center">
-              <span className="text-[#9D8A6C] text-5xl font-serif block mb-6">&ldquo;</span>
+            <div className="bg-[#EDEAE5]/50 p-12 md:p-16 text-center animate-scale-in">
+              <span className="text-[#9D8A6C] text-5xl font-serif block mb-6 animate-fade-up">&ldquo;</span>
               <h2 className="font-serif text-3xl md:text-4xl mb-6 text-[#1C1E1A]">
                 Thank you for reaching out.
               </h2>
@@ -127,7 +126,7 @@ function ContactPage() {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full bg-transparent border-b border-[#1C1E1A]/20 py-3 text-base md:text-sm focus:outline-none focus:border-[#9D8A6C] transition-colors"
+                    className="w-full bg-transparent border-b border-[#1C1E1A]/20 py-3 text-base md:text-sm focus:outline-none focus:border-[#9D8A6C] transition-all duration-300 focus:tracking-wide"
                     placeholder="Your name"
                   />
                 </div>
@@ -140,7 +139,7 @@ function ContactPage() {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full bg-transparent border-b border-[#1C1E1A]/20 py-3 text-base md:text-sm focus:outline-none focus:border-[#9D8A6C] transition-colors"
+                    className="w-full bg-transparent border-b border-[#1C1E1A]/20 py-3 text-base md:text-sm focus:outline-none focus:border-[#9D8A6C] transition-all duration-300 focus:tracking-wide"
                     placeholder="your@email.com"
                   />
                 </div>
@@ -155,7 +154,7 @@ function ContactPage() {
                     type="tel"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full bg-transparent border-b border-[#1C1E1A]/20 py-3 text-base md:text-sm focus:outline-none focus:border-[#9D8A6C] transition-colors"
+                    className="w-full bg-transparent border-b border-[#1C1E1A]/20 py-3 text-base md:text-sm focus:outline-none focus:border-[#9D8A6C] transition-all duration-300 focus:tracking-wide"
                     placeholder="+91 ..."
                   />
                 </div>
@@ -166,7 +165,7 @@ function ContactPage() {
                   <select
                     value={formData.projectType}
                     onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                    className="w-full bg-transparent border-b border-[#1C1E1A]/20 py-3 text-base md:text-sm focus:outline-none focus:border-[#9D8A6C] transition-colors"
+                    className="w-full bg-transparent border-b border-[#1C1E1A]/20 py-3 text-base md:text-sm focus:outline-none focus:border-[#9D8A6C] transition-all duration-300 focus:tracking-wide"
                   >
                     <option value="">Select...</option>
                     <option value="residential">Residential</option>
@@ -185,7 +184,7 @@ function ContactPage() {
                 <select
                   value={formData.budget}
                   onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                  className="w-full bg-transparent border-b border-[#1C1E1A]/20 py-3 text-base md:text-sm focus:outline-none focus:border-[#9D8A6C] transition-colors"
+                  className="w-full bg-transparent border-b border-[#1C1E1A]/20 py-3 text-base md:text-sm focus:outline-none focus:border-[#9D8A6C] transition-all duration-300 focus:tracking-wide"
                 >
                   <option value="">Select range...</option>
                   <option value="50L-1Cr">50 Lakhs — 1 Crore</option>
@@ -204,17 +203,19 @@ function ContactPage() {
                   rows={5}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full bg-transparent border-b border-[#1C1E1A]/20 py-3 text-base md:text-sm focus:outline-none focus:border-[#9D8A6C] transition-colors resize-none"
+                  className="w-full bg-transparent border-b border-[#1C1E1A]/20 py-3 text-base md:text-sm focus:outline-none focus:border-[#9D8A6C] transition-all duration-300 focus:tracking-wide resize-none"
                   placeholder="Share your vision, timeline, and any specific requirements..."
                 />
               </div>
 
-              <button
-                type="submit"
-                className="px-12 py-5 bg-[#1C1E1A] text-[#F7F5F2] text-[10px] uppercase tracking-[0.3em] font-medium hover:bg-[#9D8A6C] transition-colors duration-500"
-              >
-                Submit Inquiry
-              </button>
+              <Magnetic strength={0.3}>
+                <button
+                  type="submit"
+                  className="px-12 py-5 bg-[#1C1E1A] text-[#F7F5F2] text-[10px] uppercase tracking-[0.3em] font-medium hover:bg-[#9D8A6C] transition-colors duration-500"
+                >
+                  Submit Inquiry
+                </button>
+              </Magnetic>
             </form>
           )}
         </Reveal>
@@ -233,14 +234,16 @@ function ContactPage() {
               <span className="font-serif italic text-4xl md:text-5xl text-[#F7F5F2] block mb-6">
                 23.0225° N, 72.5714° E
               </span>
-              <a
-                href="https://www.google.com/maps/search/?api=1&query=Sabarmati+Riverfront+Ahmedabad"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-block px-8 py-3 border border-[#F7F5F2]/40 text-[#F7F5F2] hover:bg-[#F7F5F2] hover:text-[#1C1E1A] transition-colors text-[10px] uppercase tracking-[0.3em]"
-              >
-                Open in Maps
-              </a>
+              <Magnetic strength={0.3}>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Sabarmati+Riverfront+Ahmedabad"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-block px-8 py-3 border border-[#F7F5F2]/40 text-[#F7F5F2] hover:bg-[#F7F5F2] hover:text-[#1C1E1A] transition-colors text-[10px] uppercase tracking-[0.3em]"
+                >
+                  Open in Maps
+                </a>
+              </Magnetic>
             </div>
           </div>
         </Reveal>

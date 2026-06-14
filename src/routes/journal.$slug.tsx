@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Reveal } from "@/components/Reveal";
+import { Magnetic } from "@/components/Magnetic";
 
 export const Route = createFileRoute("/journal/$slug")({
   head: ({ params }) => ({
@@ -170,15 +171,13 @@ function JournalArticlePage() {
             Share this article
           </span>
           <div className="flex gap-6">
-            <a href="#" className="text-sm text-[#8A8580] hover:text-[#9D8A6C] transition-colors">
-              Twitter
-            </a>
-            <a href="#" className="text-sm text-[#8A8580] hover:text-[#9D8A6C] transition-colors">
-              LinkedIn
-            </a>
-            <a href="#" className="text-sm text-[#8A8580] hover:text-[#9D8A6C] transition-colors">
-              WhatsApp
-            </a>
+            {["Twitter", "LinkedIn", "WhatsApp"].map((label) => (
+              <Magnetic key={label} strength={0.5}>
+                <a href="#" className="text-sm text-[#8A8580] hover:text-[#9D8A6C] transition-colors">
+                  {label}
+                </a>
+              </Magnetic>
+            ))}
           </div>
         </Reveal>
       </article>

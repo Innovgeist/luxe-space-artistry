@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Reveal } from "@/components/Reveal";
+import { TiltCard } from "@/components/TiltCard";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -89,18 +90,22 @@ function AboutPage() {
       {/* Founder Story */}
       <section className="px-6 md:px-12 py-24 md:py-32 max-w-7xl mx-auto grid md:grid-cols-12 gap-16 items-start">
         <Reveal className="md:col-span-5">
-          <img
-            src="/images/about-detail.jpg"
-            alt="Material texture study"
-            loading="lazy"
-            className="w-full aspect-[4/5] object-cover"
-          />
-          <img
-            src="/images/texture-detail.jpg"
-            alt="Material layering detail"
-            loading="lazy"
-            className="w-full aspect-[4/5] object-cover mt-6 md:mt-12"
-          />
+          <TiltCard className="overflow-hidden" max={3}>
+            <img
+              src="/images/about-detail.jpg"
+              alt="Material texture study"
+              loading="lazy"
+              className="w-full aspect-[4/5] object-cover transition-transform duration-700 hover:scale-105"
+            />
+          </TiltCard>
+          <TiltCard className="overflow-hidden mt-6 md:mt-12" max={3}>
+            <img
+              src="/images/texture-detail.jpg"
+              alt="Material layering detail"
+              loading="lazy"
+              className="w-full aspect-[4/5] object-cover transition-transform duration-700 hover:scale-105"
+            />
+          </TiltCard>
         </Reveal>
         <Reveal className="md:col-span-6 md:col-start-7 pt-4" delay={200}>
           <span className="font-mono text-[10px] uppercase tracking-widest text-[#9D8A6C] mb-6 block">
@@ -153,12 +158,14 @@ function AboutPage() {
           </Reveal>
           <div className="grid md:grid-cols-2 gap-px bg-[#F7F5F2]/10">
             {values.map((v, i) => (
-              <Reveal key={i} className="bg-[#1C1E1A] p-10 md:p-12 group hover:bg-[#3E4437] transition-colors duration-500" delay={(i % 4) * 100}>
-                <span className="font-mono text-[#9D8A6C] text-[10px] uppercase tracking-widest mb-6 block">
-                  0{i + 1}
-                </span>
-                <h3 className="font-serif text-2xl mb-4 text-[#F7F5F2]">{v.title}</h3>
-                <p className="text-sm leading-relaxed text-[#F7F5F2]/50">{v.desc}</p>
+              <Reveal key={i} className="h-full" delay={(i % 4) * 100}>
+                <TiltCard className="bg-[#1C1E1A] p-10 md:p-12 group hover:bg-[#3E4437] transition-colors duration-500 h-full" max={3}>
+                  <span className="font-mono text-[#9D8A6C] text-[10px] uppercase tracking-widest mb-6 block">
+                    0{i + 1}
+                  </span>
+                  <h3 className="font-serif text-2xl mb-4 text-[#F7F5F2]">{v.title}</h3>
+                  <p className="text-sm leading-relaxed text-[#F7F5F2]/50">{v.desc}</p>
+                </TiltCard>
               </Reveal>
             ))}
           </div>
@@ -177,12 +184,14 @@ function AboutPage() {
         </Reveal>
         <div className="grid md:grid-cols-2 gap-12 md:gap-16">
           {teamMembers.map((member, i) => (
-            <Reveal key={member.name} className="border-t border-[#1C1E1A]/10 pt-8" delay={(i % 2) * 100}>
-              <h3 className="font-serif text-2xl text-[#1C1E1A] mb-1">{member.name}</h3>
-              <span className="text-[10px] uppercase tracking-widest text-[#9D8A6C] mb-4 block">
-                {member.role}
-              </span>
-              <p className="text-sm text-[#8A8580] leading-relaxed">{member.bio}</p>
+            <Reveal key={member.name} delay={(i % 2) * 100}>
+              <TiltCard className="border-t border-[#1C1E1A]/10 pt-8 hover:border-[#9D8A6C] transition-colors duration-500" max={2}>
+                <h3 className="font-serif text-2xl text-[#1C1E1A] mb-1">{member.name}</h3>
+                <span className="text-[10px] uppercase tracking-widest text-[#9D8A6C] mb-4 block">
+                  {member.role}
+                </span>
+                <p className="text-sm text-[#8A8580] leading-relaxed">{member.bio}</p>
+              </TiltCard>
             </Reveal>
           ))}
         </div>

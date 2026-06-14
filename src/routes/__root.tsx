@@ -13,6 +13,8 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
+import { CustomCursor } from "../components/CustomCursor";
+import { ScrollProgress } from "../components/ScrollProgress";
 
 function NotFoundComponent() {
   return (
@@ -120,6 +122,8 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <CustomCursor />
+      <ScrollProgress />
       <Header />
       <div key={pathname} className="animate-route-fade">
         <Outlet />

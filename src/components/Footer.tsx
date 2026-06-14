@@ -1,22 +1,28 @@
 import { Link } from "@tanstack/react-router";
+import { Reveal } from "./Reveal";
+import { Magnetic } from "./Magnetic";
 
 export function Footer() {
   return (
     <footer className="border-t border-[#1C1E1A]/10">
       {/* CTA Section */}
       <div className="px-6 md:px-12 py-24 md:py-32 text-center">
-        <h2 className="font-serif text-5xl md:text-7xl mb-10 text-[#1C1E1A]">
+        <Reveal as="h2" className="font-serif text-5xl md:text-7xl mb-10 text-[#1C1E1A]">
           Begin the dialogue.
-        </h2>
-        <p className="text-[#8A8580] max-w-md mx-auto mb-12 text-pretty text-sm leading-relaxed">
+        </Reveal>
+        <Reveal as="p" delay={100} className="text-[#8A8580] max-w-md mx-auto mb-12 text-pretty text-sm leading-relaxed">
           We accept a limited number of projects each year to ensure uncompromising focus on every detail.
-        </p>
-        <Link
-          to="/contact"
-          className="inline-block px-12 py-6 bg-[#1C1E1A] text-[#F7F5F2] text-[10px] uppercase tracking-[0.3em] font-medium hover:bg-[#9D8A6C] transition-colors duration-500"
-        >
-          Schedule Consultation
-        </Link>
+        </Reveal>
+        <Reveal delay={200}>
+          <Magnetic strength={0.3}>
+            <Link
+              to="/contact"
+              className="inline-block px-12 py-6 bg-[#1C1E1A] text-[#F7F5F2] text-[10px] uppercase tracking-[0.3em] font-medium hover:bg-[#9D8A6C] transition-colors duration-500"
+            >
+              Schedule Consultation
+            </Link>
+          </Magnetic>
+        </Reveal>
       </div>
 
       {/* Footer Grid */}
@@ -94,12 +100,12 @@ export function Footer() {
             &copy; 2025 Vivanta Interior Architecture
           </span>
           <div className="flex gap-8 text-[10px] uppercase tracking-widest opacity-40 text-[#1C1E1A]">
-            <Link to="#" className="hover:text-[#9D8A6C] transition-colors">
+            <a href="#" className="hover:text-[#9D8A6C] transition-colors">
               Privacy
-            </Link>
-            <Link to="#" className="hover:text-[#9D8A6C] transition-colors">
+            </a>
+            <a href="#" className="hover:text-[#9D8A6C] transition-colors">
               Terms
-            </Link>
+            </a>
           </div>
         </div>
       </div>

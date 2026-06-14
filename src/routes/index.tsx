@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { Showreel } from "@/components/Showreel";
 import { Reveal } from "@/components/Reveal";
+import { Magnetic } from "@/components/Magnetic";
+import { TiltCard } from "@/components/TiltCard";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -56,21 +58,25 @@ function HomePage() {
               An Ahmedabad-based interior studio crafting sensory environments that balance monumental scale with intimate detail.
             </p>
             <div className="flex gap-4">
-              <Link
-                to="/projects"
-                className="group relative px-10 py-5 border border-[#F7F5F2]/40 overflow-hidden inline-block text-center"
-              >
-                <span className="relative z-10 text-[10px] uppercase tracking-[0.3em] font-medium text-[#F7F5F2] group-hover:text-[#1C1E1A] transition-colors duration-500">
-                  View Collection
-                </span>
-                <div className="absolute inset-0 bg-[#F7F5F2] -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
-              </Link>
-              <Link
-                to="/contact"
-                className="px-10 py-5 bg-[#F7F5F2] text-[#1C1E1A] hover:bg-[#9D8A6C] hover:text-[#F7F5F2] transition-colors duration-500 text-[10px] uppercase tracking-[0.3em] font-medium"
-              >
-                Begin a Project
-              </Link>
+              <Magnetic strength={0.25}>
+                <Link
+                  to="/projects"
+                  className="group relative px-10 py-5 border border-[#F7F5F2]/40 overflow-hidden inline-block text-center"
+                >
+                  <span className="relative z-10 text-[10px] uppercase tracking-[0.3em] font-medium text-[#F7F5F2] group-hover:text-[#1C1E1A] transition-colors duration-500">
+                    View Collection
+                  </span>
+                  <div className="absolute inset-0 bg-[#F7F5F2] -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
+                </Link>
+              </Magnetic>
+              <Magnetic strength={0.25}>
+                <Link
+                  to="/contact"
+                  className="px-10 py-5 bg-[#F7F5F2] text-[#1C1E1A] hover:bg-[#9D8A6C] hover:text-[#F7F5F2] transition-colors duration-500 text-[10px] uppercase tracking-[0.3em] font-medium inline-block"
+                >
+                  Begin a Project
+                </Link>
+              </Magnetic>
             </div>
           </div>
         </div>
@@ -194,7 +200,7 @@ function HomePage() {
           <div className="grid md:grid-cols-2 gap-x-12 gap-y-16 md:gap-y-32">
             {/* Project 1 */}
             <Reveal as={Link} to="/projects/riverfront-pavilion" className="group cursor-pointer block">
-              <div className="relative overflow-hidden aspect-[16/10] mb-6">
+              <TiltCard className="relative overflow-hidden aspect-[16/10] mb-6" max={4}>
                 <img
                   src="/images/project-riverfront.jpg"
                   alt="The Riverfront Pavilion - Residential"
@@ -202,7 +208,7 @@ function HomePage() {
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-[#3E4437]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </div>
+              </TiltCard>
               <div className="flex justify-between items-start">
                 <div>
                   <h3 className="font-serif text-2xl text-[#1C1E1A] mb-1">
@@ -218,7 +224,7 @@ function HomePage() {
 
             {/* Project 2 */}
             <Reveal as={Link} to="/projects/aurum-collective" className="group cursor-pointer block md:mt-20" delay={100}>
-              <div className="relative overflow-hidden aspect-[10/12] mb-6">
+              <TiltCard className="relative overflow-hidden aspect-[10/12] mb-6" max={4}>
                 <img
                   src="/images/project-aurum.jpg"
                   alt="Aurum Collective - Commercial"
@@ -226,7 +232,7 @@ function HomePage() {
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-[#3E4437]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </div>
+              </TiltCard>
               <div className="flex justify-between items-start">
                 <div>
                   <h3 className="font-serif text-2xl text-[#1C1E1A] mb-1">
@@ -242,7 +248,7 @@ function HomePage() {
 
             {/* Project 3 */}
             <Reveal as={Link} to="/projects/sand-house" className="group cursor-pointer block" delay={200}>
-              <div className="relative overflow-hidden aspect-[3/4] mb-6">
+              <TiltCard className="relative overflow-hidden aspect-[3/4] mb-6" max={4}>
                 <img
                   src="/images/project-sand-house.jpg"
                   alt="The Sand House - Residential"
@@ -250,7 +256,7 @@ function HomePage() {
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-[#3E4437]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </div>
+              </TiltCard>
               <div className="flex justify-between items-start">
                 <div>
                   <h3 className="font-serif text-2xl text-[#1C1E1A] mb-1">
@@ -266,7 +272,7 @@ function HomePage() {
 
             {/* Project 4 */}
             <Reveal as={Link} to="/projects/equinox-hub" className="group cursor-pointer block md:mt-20" delay={300}>
-              <div className="relative overflow-hidden aspect-[3/4] mb-6">
+              <TiltCard className="relative overflow-hidden aspect-[3/4] mb-6" max={4}>
                 <img
                   src="/images/project-equinox.jpg"
                   alt="Equinox Corporate Hub - Commercial"
@@ -274,7 +280,7 @@ function HomePage() {
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-[#3E4437]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </div>
+              </TiltCard>
               <div className="flex justify-between items-start">
                 <div>
                   <h3 className="font-serif text-2xl text-[#1C1E1A] mb-1">
@@ -484,12 +490,14 @@ function HomePage() {
           <p className="text-[#F7F5F2]/70 leading-relaxed mb-12 max-w-md mx-auto">
             We accept twelve commissions a year. Conversations begin with a single meeting at our atelier or your site.
           </p>
-          <Link
-            to="/contact"
-            className="inline-block px-12 py-5 bg-[#F7F5F2] text-[#1C1E1A] hover:bg-[#9D8A6C] hover:text-[#F7F5F2] transition-colors duration-500 text-[10px] uppercase tracking-[0.3em] font-medium"
-          >
-            Request a Consultation
-          </Link>
+          <Magnetic strength={0.25}>
+            <Link
+              to="/contact"
+              className="inline-block px-12 py-5 bg-[#F7F5F2] text-[#1C1E1A] hover:bg-[#9D8A6C] hover:text-[#F7F5F2] transition-colors duration-500 text-[10px] uppercase tracking-[0.3em] font-medium"
+            >
+              Request a Consultation
+            </Link>
+          </Magnetic>
         </Reveal>
       </section>
     </main>

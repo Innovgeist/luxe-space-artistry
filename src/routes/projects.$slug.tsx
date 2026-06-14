@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/Reveal";
+import { TiltCard } from "@/components/TiltCard";
 
 export const Route = createFileRoute("/projects/$slug")({
   head: ({ params }) => ({
@@ -224,14 +225,17 @@ function ProjectDetailPage() {
         </h2>
         <div className="grid gap-6">
           {project.images.map((img, i) => (
-            <Reveal key={i} as="img"
-              src={img}
-              alt={`${project.title} — image ${i + 1}`}
-              loading="lazy"
-              className="w-full object-cover"
-              style={{ aspectRatio: i === 0 ? "16/9" : "3/4", maxHeight: i === 0 ? "70vh" : "80vh" }}
-              delay={(i % 4) * 100}
-            />
+            <Reveal key={i} delay={(i % 4) * 100}>
+              <TiltCard className="overflow-hidden" max={2}>
+                <img
+                  src={img}
+                  alt={`${project.title} — image ${i + 1}`}
+                  loading="lazy"
+                  className="w-full object-cover transition-transform duration-700 hover:scale-105"
+                  style={{ aspectRatio: i === 0 ? "16/9" : "3/4", maxHeight: i === 0 ? "70vh" : "80vh" }}
+                />
+              </TiltCard>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -251,14 +255,14 @@ function ProjectDetailPage() {
               className="group cursor-pointer block"
               delay={i * 100}
             >
-              <div className="relative overflow-hidden mb-4">
+              <TiltCard className="relative overflow-hidden mb-4" max={4}>
                 <img
                   src={rp.heroImage}
                   alt={rp.title}
                   loading="lazy"
                   className="w-full aspect-[16/10] object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-              </div>
+              </TiltCard>
               <h3 className="font-serif text-xl text-[#1C1E1A]">{rp.title}</h3>
               <p className="text-[10px] uppercase tracking-widest text-[#8A8580]">
                 {rp.category} — {rp.location}
